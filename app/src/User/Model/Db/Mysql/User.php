@@ -24,6 +24,12 @@ class User implements UserHandler {
     
     public function delete(UserModel $user)
     {
+        $query2 = "DELETE FROM `blogger`.`user` WHERE `user`.`id` = '%s LIMIT 1";
+         $query = sprintf("DELETE FROM `blogger`.`user` WHERE `user`.`id` = '%s LIMIT 1",
+                mysql_real_escape_string($user->getId()));
+               // mysql_real_escape_string($article));
+         echo $query;
+        $this->getDb()->exec($query);
        
     }
 
