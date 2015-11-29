@@ -24,7 +24,7 @@ class User implements UserHandler {
     
     public function delete(UserModel $user)
     {
-        $query2 = "DELETE FROM `blogger`.`user` WHERE `user`.`id` = '%s LIMIT 1";
+        $query2 = "DELETE FROM `blogger`.`user` WHERE `user`.`id` = '%s' LIMIT 1";
          $query = sprintf("DELETE FROM `blogger`.`user` WHERE `user`.`id` = '%s LIMIT 1",
                 mysql_real_escape_string($user->getId()));
                // mysql_real_escape_string($article));
@@ -35,7 +35,27 @@ class User implements UserHandler {
 
     public function update(UserModel $user)
     {
-       
+
+         $query = sprintf(" UPDATE `user` "
+               . "SET "
+               . "`email`='%s',"
+               . "`username`='%s',"
+               . "`password`='%s',"
+               . "`firstname`='%s',"
+               . "`lastname`='%s',"
+               . "`birthday`='%s',"
+               . "`isActive`='%s'"
+               . " WHERE user 'id' = ".$user->getId(),
+                mysql_real_escape_string($user->getEmail()),
+                mysql_real_escape_string($user->getUsername()),
+                mysql_real_escape_string($user->getPassword()),
+                mysql_real_escape_string($user->getFirstname()),
+               mysql_real_escape_string($user->getLastname(),
+               mysql_real_escape_string($user->getBirthdate()),
+               mysql_real_escape_string($user->getIsActive())
+                        ));
+         echo $query;
+        $this->getDb()->exec($query);
     }
     public function find($criteria)
     {
@@ -72,6 +92,8 @@ class User implements UserHandler {
     }
     public function insert(UserModel $user)
     {
+        
+        
         $sql = 'INSERT INTO user VALUES ('.
                'NULL, '.
                "'".$user->getEmail()    . "',".
