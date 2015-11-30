@@ -1,7 +1,9 @@
 <?php
+foreach 
+    ($this->users as $user)
+    : ?>
 
-// blogger/public/home.phtml
-foreach ($array as $value) {
-    
-}
-echo "Hello ".$this->prenom;
+<h1><?php echo $user->getEmail() ?></h1>
+<h2><?php echo $user->getEmail() ?></h2>
+
+<?php endforeach; ?>
