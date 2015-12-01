@@ -31,7 +31,7 @@ class Logger {
             throw new \InvalidArgumentException('invalid level');
         }
         $this->setException($e);
-        $msg = sprintf('[%s];%s;%s;%d;%s;%s;%d', 
+        $msg = sprintf("[%s];%s;%s;%d;%s;%s;%d\n", 
                 $this->levelTypes[$level], $datetime->format('Y-m-d'), $datetime->format('H:i:s'), $e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine()
         );
         $this->getStoreHandler()->write($msg);
