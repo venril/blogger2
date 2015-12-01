@@ -2,14 +2,16 @@
 
 // blogger/public/index.php
 
+
 require '../app/init.php';
-$home = new Aston\View\Template('home.phtml');
-$home->prenom = 'Harry';
 
+$view = new Aston\View\View(APP_PATH. '/views/');
+$view->prenom = "toto";
+$view->setLayout('layout.phtml');
+$view->setContent('home.phtml');
+$view->render('text.phtml','');
 
-$layout = new Aston\View\Template('layout.phtml');
-$layout->content = $home->render();
-
+/*
 echo $layout->render();
 $user = new User\Model\User();
 $user2 = new User\Model\User();
@@ -31,7 +33,19 @@ $userDb = new User\Model\Db\Mysql\User($db);
 //$userDb->insert($user);
 $userDb->find(array('id'=> 2));
 $criteria = '';
-$u = $userDb->findAll("LIMIT 3");
+
+$home = new Aston\View\Template('home.phtml');
+$home->prenom = 'Harry';
+$layout = new Aston\View\Template('layout.phtml');
+$layout->content = $home->render();
+
+//$u = $userDb->findAll("LIMIT 3");
 $home->users = $userDb->findAll(null);
 
+echo $home->render();
+
+
+
 //var_dump($u);
+ * 
+ */

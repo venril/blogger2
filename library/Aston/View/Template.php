@@ -1,33 +1,20 @@
 <?php
-
-// blogger/library/Aston/View/template.php
-
 namespace Aston\View;
-
-class Template
-{
-    private $filename;
+class Template extends View {
     
-    public function __construct($filename) 
-    {
-        $this->setFilename($filename);
-    }
-    
-    public function render() 
-    {
-        ob_start();
-        include $this->filename;;
-        $content = ob_get_clean();
-        return $content;
-    }      
-    public function setFilename($filename) 
-    {
-        $this->filename = (string) $filename;
-        return $this;
-    }
-    public function getFilename()
-    {
-        return $this->filename;
+    //
+    public function render($view,array $data = array()){
+        $charlist = '/\\';
+      $path = rtim($this->getPath(),$charlist);  
+      $path = ltrim($view,$charlist);
+      $filename = $path . DIRECTORY_SEPARATOR . $view;
+      
+      if(!file_exists($filename)) {
+          throw new Exception('File "'.$filename.'" not found');
+      }
+      ob_start();
+      extract($data);
+      include $filename;
+      return ob_get_clean();
     }
 }
-
