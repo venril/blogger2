@@ -5,12 +5,12 @@ class Template extends View {
     //
     public function render($view,array $data = array()){
         $charlist = '/\\';
-      $path = rtim($this->getPath(),$charlist);  
-      $path = ltrim($view,$charlist);
+      $path = rtrim($this->getPath(), $charlist);  
+      $view = ltrim($view,$charlist);
       $filename = $path . DIRECTORY_SEPARATOR . $view;
       
       if(!file_exists($filename)) {
-          throw new Exception('File "'.$filename.'" not found');
+          throw new \Exception('File "'.$filename.'" not found');
       }
       ob_start();
       extract($data);

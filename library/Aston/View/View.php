@@ -9,14 +9,16 @@ abstract class View{
     public function __construct($path)
     {
         $this->setPath($path);
-        if (is_dir($this->getPath())){
+        if (!is_dir($this->getPath())){
             throw new \Exception(
                     'ErrorPath :"'.$this->getPath().'"not found"');
         }
     }
+    public function escape($value){
+        return htmlentities($value);
+    }
 
-
-    public function getPath()
+        public function getPath()
     {
         return $this->path;
     }

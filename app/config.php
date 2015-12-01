@@ -18,3 +18,7 @@ define('DB_PASSWORD', 'admin');
 define('DB_PORT', 3306);
 define('DB_ENCODING', 'UTF8');
 
+// VIEW 
+define ('VIEW_PATH', APP_PATH.DS. 'views');
+define ('VIEW_DEFAULT_LAYOUT', 'layout.phtml');
+

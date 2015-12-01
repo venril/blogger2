@@ -26,7 +26,8 @@ $logManager = new Manager();
 $logManager->addLogger($logger);
 
 // view Init
-$layout  ;
+$view = new Aston\View\Layout(VIEW_PATH);
+$view->setView(VIEW_DEFAULT_LAYOUT);
 
 $db = new Connection(
         DB_DRIVER,
